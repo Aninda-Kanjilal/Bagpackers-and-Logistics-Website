@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Order Form</title>
+      <link rel="stylesheet" href="orderform_css.css">
+	  <link rel="stylesheet" href="slider.css">
+      <script type="text/javascript" src="from_validation.js"></script>
+	  
+   </head>
+   <body>
+      <div style="background-color:#edf8fc;padding:15px;">
+         <img src="navy-darkblue_dark.png" width="200" height="50" align="left"/>
+         <div style="text-align:center">
+            <h2>
+               <center>Get Price Quotations Now</center>
+            </h2>
+         </div>
+      </div>
+      <div class="navbar">
+         <a href="home2.html">HOME</a>
+         <a href="about2.html">ABOUT US</a>
+         <a href="gallery.html">GALLERY</a>
+         <div class="dropdown">
+            <button class="dropbtn">OUR SERVICES
+            <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+               <a href="our-services.html">SERVICES</a>
+      <a href="order_form.html">PRICE QUOTE</a>
+      <a href="parallel.html">TESTIMONIAL</a>
+            </div>
+         </div>
+         <a href="contact.html">CONTACT US</a>
+         <div class="dropdown" style="float:right">
+            <button class="dropbtn">
+            <a href="firstpage.html">LOGOUT</a></button>
+         </div>
+      </div>
+      <div class="container">
+         <div class="column-33">
+            
+			<div class="slideshow-container1">
+			  <div class="mySlides fade">
+				<div class="numbertext">1 / 4</div>
+				<img src="slide3-2.jpg" style="width:100%">
+			  </div>
+
+			  <div class="mySlides fade">
+				<div class="numbertext">2 / 4</div>
+				<img src="slide3-1.jpg" style="width:100%">
+			  </div>
+
+			  <div class="mySlides fade">
+				<div class="numbertext">3 / 4</div>
+				<img src="blog-5.jpg" style="width:100%">
+			  </div>
+
+			  <div class="mySlides fade">
+				<div class="numbertext">4 / 4</div>
+				<img src="blog-8.jpg" style="width:100%">
+			  </div>
+
+			</div>
+			<br>
+
+			<div style="text-align:center">
+			  <span class="dot"></span> 
+			  <span class="dot"></span> 
+			  <span class="dot"></span> 
+			  <span class="dot"></span> 
+			</div>
+				
+			
+			
+         </div>
+		 <form action ="order.php" method="POST">
+         <table width="528" border="0" align="center">
+            <tbody>
+               <tr>
+                  <td width="167" height="39">Name <span font-color="white">*</span></td>
+                  <td width="146"><input type="text" name="name" id="name"></td>
+                  <td width="201"><span id="error_name"></span></td>
+               </tr>
+               <tr>
+                  <td height="39">Email <span font-color="red">*</span></td>
+                  <td><input type="text" name="email" id="mail"></td>
+                  <td><span id="error_mail"></span></td>
+               </tr>
+               <tr>
+                  <td height="42">Mode of Transport <span font-color="red">*</span></td>
+                  <td>
+                     <select id="sel" style="width:100%" name="mode">
+                        <option>-------------Select-------------</option>
+                        <option>By Air</option>
+                        <option>By Road</option>
+                     </select>
+                  </td>
+                  <td><span id="error_select"></span></td>
+               </tr>
+               <tr>
+                  <td height="42">Weight: (in kg)</td>
+                  <td>
+                     <select id="sel1" style="width:100%" name="wt">
+                        <option>-------Select Weight-------</option>
+                        <option>500 to 1000</option>
+                        <option>1000 to 10,000</option>
+                        <option>10,000 to 15,000</option>
+                        <option>Above 15,000</option>
+					 </select>
+                  </td>
+				  <td><span id="error_weight"></span></td>
+               </tr>
+               <tr>
+                  <td height="35">Distance</td>
+                  <td>
+                     <select  id="dis" style="width:100%" name="dist">
+                        <option>------Select Distance------</option>
+                        <option>Upto 400 km</option>
+                        <option>400 - 800 km</option>
+                        <option>800 - 1300 km</option>
+                        <option>1300 - 1900 km</option>
+                     </select>
+                  </td>
+		</tr>
+               <tr>
+                  <td height="38">Zip Code <span font-color="white">*</span></td>
+                  <td><input type="text" id="zipcode" maxlength="6" name="zipcode"></td>
+                  <td><span id="error_zipcode"></span></td>
+               </tr>
+               <tr>
+                  <td height="43">Additional Info</td>
+                  <td><textarea name="textarea" style="width:100%"></textarea></td>
+                  <td>&nbsp;</td>
+               </tr>
+               <tr>
+                  <td height="43">Total Price</td>
+                  <td>
+                     <div id="price">Rs. 0</div>
+                  </td>
+                  <td></td>
+               </tr>
+               <tr>
+		<td colspan="2"><div align="center"><button onClick="validate()">Submit</button></div></td>
+		
+		<td></td>
+               </tr>
+            </tbody>
+         </table>
+		 </form>
+      </div>
+      <!--Chat section-->
+      <button class="open-button" onClick="openForm()"><b>Chat</b></button>
+      <div class="chat-popup" id="myForm">
+         <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+            <textarea placeholder="Type your message.." name="msg" required></textarea>
+            <button type="submit" class="btn"><b>Send</b></button>
+            <button type="button" class="btn cancel" onClick="closeForm()"><b>Close</b></button>
+         </form>
+      </div>
+	
+<!--footer part-->  
+     <footer>
+ Bag Packers Logistics Services &reg; &trade; <br>All Rights Reserved &copy; - India, 2020<br>
+<a href="faq.html">Terms and Conditions</a>
+ </footer>
+   </body>
+   
+   <script type="text/javascript">
+         function openForm() {
+           document.getElementById("myForm").style.display = "block";
+         }
+         
+         function closeForm() {
+           document.getElementById("myForm").style.display = "none";
+         }
+		 
+   </script>
+   <script type="text/javascript" src="slider.js"></script>
+
+</html>

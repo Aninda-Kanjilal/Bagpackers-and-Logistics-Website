@@ -1,0 +1,226 @@
+	<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content = "2; url = profile.html" />
+<link rel="stylesheet" type="text/css" href="profile.css">
+	<script src="profile.js"></script>
+	
+</head>
+
+<!--header part-->
+
+ <body>
+ <div style="background-color:#edf8fc;padding:15px;">
+ <img src="navy-darkblue_dark.png" width="200" height="50" align="left"/>
+ <div style="text-align:center">
+  <h2><center>Complete Your Profile</center></h2>
+ </div></div>
+
+<div class="navbar">
+         <a href="profile.html">HOME</a>
+         <a href="profile.html">ABOUT US</a>
+         <a href="profile.html">GALLERY</a>
+         <div class="dropdown">
+            <button class="dropbtn">OUR SERVICES
+            <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+               <a href="profile.html">SERVICES</a>
+      		<a href="profile.html">PRICE QUOTE</a>
+     		 <a href="profile.html">TESTIMONIAL</a>
+            </div>
+         </div>
+         <a href="profile.html">CONTACT US</a>
+         <div class="dropdown" style="float:right">
+            <button class="dropbtn">
+            <a href="firstpage.html">LOGOUT</a></button>
+         </div>
+      </div>
+	  
+ <div class="container">
+ <br>
+ <div style="float:left; width:46%">
+		<img src="slide3-2.jpg" height="100%" width="100%">
+ </div>
+<form action="profile.php" method="POST">
+<table width="528" border="0" align="center">
+  <tbody>
+    <tr>
+      <td width="167" height="39" >First Name:</td>
+      <td width="146"><input type="text" name="firstname" id="firstname" required></td>
+	  <td width="201"><span id="error_fname"></span></td>
+    </tr>
+    <tr>
+      <td width="167" height="39">Last Name:</td>
+      <td width="146" ><input type="text" name="lastname" id="lastname" required></td>
+	  <td width="201"><span id="error_lname"></span></td>
+    </tr>
+    <tr>
+      <td height="39"> E-Mail:</td>
+      <td><input type="text" name="email" id="email" required></td>
+	  <td width="201"><span id="error_mail"></span></td>
+    </tr>
+    <tr>
+      <td height="39">Password:</td>
+      <td><input type="password" name="password" id="password" required></td>
+	  <td width="201"><span id="error_pass"></span></td>
+    </tr>
+    <tr>
+      <td height="39">Phone Number:</td>
+      <td><input type="text" name="phone" id="phonenumber" maxlength="10"required></td>
+	  <td width="201"><span id="error_phone"></span></td>
+    </tr>
+    <tr>
+      <td height="42">Gender:</td>
+      <td><select id="gender" style="width:100%" name="gender" required>
+ 		   <option>----------------Select Gender----------------</option>
+		  <option>Male</option>
+			  <option>Female</option>
+				  <option>Other</option>
+      </select></td>
+	  <td width="201"><span id="error_gender"></span></td>
+    </tr>
+    <tr>
+      <td height="42">State:</td>
+      <td><select style="width:100%" onChange="print_city('state', this.selectedIndex);" id="sts" name ="stt" class="form-control" required></select>
+      </td>
+	  <td width="201"><span id="error_state"></span></td>
+    </tr>
+    <tr>
+      <td height="42">City:</td>
+      <td><select style="width:100%" onChange="print_state('city', this.selctedIndex);"id="state" name="state" class="form-control" required>
+      </select></td>
+       <td width="201"><span id="error_city"></span></td>
+    </tr>
+    <tr>
+      <td height="42">How did you hear about us?</td>
+      <td><select style="width:100%" id="select" name="select2" required>
+	<option>------------------Select Source------------------</option>
+        <option>Internet Search</option>
+        <option>Recommendation</option>
+        <option>Advertisement</option>
+        <option >Newspapers and Magazines</option>
+      </select></td>
+    </tr>
+	<tr>
+      <td height="10"></td>
+      <td></td>
+    </tr>
+	
+    <tr>
+      <td colspan="2">
+		<div align="center">
+		<input type="submit" name="submit" id="submit" value="Submit" onClick="validateProfile()">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="reset" name="reset" id="reset" value="Reset" onClick="window.location.href = 'profile.html'">
+		</div>
+	  </td>
+	  <td></td>
+    </tr>
+    </tbody>
+	<script language="javascript">print_state("sts");</script>
+</table>
+</form>
+</div>
+
+ <footer>
+ Bag Packers Logistics Services &reg; &trade; <br>All Rights Reserved &copy; - India, 2020<br>
+<a href="faq.html">Terms and Conditions</a>
+ </footer>
+ 
+</body>
+
+<script>
+
+function isEmpty(str){
+	str = str.trim()
+	if(str==undefined || str=="" || str.length==0)
+		return true;
+	else
+		return false;
+}
+
+function isNumber(str){
+	 var pattern = new RegExp("^[0-9]+$")
+	 return pattern.test(str); 
+}
+
+function validateProfile() {
+    var fname = document.getElementById('firstname');
+	var lname = document.getElementById('lastname');
+    var mail = document.getElementById('email');
+    var pass = document.getElementById('password');
+	var phone = document.getElementById('phonenumber');
+
+    /*Regex Code*/
+    var filter_name = /^[a-zA-Z]+$/;
+    var filter_mail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var filter_zipcode = /^[0-9]{6}$/;
+
+    /*Conditions*/
+	if (filter_name.test(fname.value)) {
+        document.getElementById('error_fname').innerHTML = '';
+    } else {
+        document.getElementById('error_fname').innerHTML = '<span>Invalid First Name</span>';
+    }
+	
+	if (filter_name.test(lname.value)) {
+        document.getElementById('error_lname').innerHTML = '';
+    } else {
+        document.getElementById('error_lname').innerHTML = '<span>Invalid Last Name</span>';
+    }
+	
+	if (filter_mail.test(mail.value)) {
+        document.getElementById('error_mail').innerHTML = '';
+    } else {
+        document.getElementById('error_mail').innerHTML = '<span>Invalid E-Mail</span>';
+    }
+	
+	if (!isEmpty(pass.value)) {
+        document.getElementById('error_pass').innerHTML = '';
+		if(pass.value.length>=6){
+			document.getElementById('error_pass').innerHTML = '';
+		}
+		else{
+			document.getElementById('error_pass').innerHTML = '<span>Should contain minimum 6 chars</span>';
+		}
+    } else {
+        document.getElementById('error_pass').innerHTML = '<span>Empty Password</span>';
+    }
+	
+    if (!isEmpty(phone.value)) {
+        document.getElementById('error_phone').innerHTML = '';
+		if((isNumber(phone.value)) && (phone.value.length==10)){
+			document.getElementById('error_phone').innerHTML = '';
+		}
+		else{
+			document.getElementById('error_phone').innerHTML = '<span>Invalid 10-digit Mobile Number</span>';
+		}
+    } else {
+        document.getElementById('error_phone').innerHTML = '<span>Empty Phone Number</span>';
+    }
+	
+	if (sts.selectedIndex == 0) {
+        document.getElementById('error_state').innerHTML = '<span>Please select State</span>';
+        return false;
+    } else {
+        document.getElementById('error_state').innerHTML = '';
+    }
+	
+	if (state.selectedIndex == 0) {
+        document.getElementById('error_city').innerHTML = '<span>Please select City</span>';
+        return false;
+    } else {
+        document.getElementById('error_city').innerHTML = '';
+    }
+    
+	if(validateProfile){
+		alert('Profile Completion is Successfull');
+		window.location.href = 'home2.html';
+	}
+	
+}
+
+</script>
+</html>

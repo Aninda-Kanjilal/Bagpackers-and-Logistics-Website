@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="booking.css">
+	<script src="booking.js"></script>
+	
+</head>
+
+<!--header part-->
+
+ <body>
+ <div style="background-color:#edf8fc;padding:15px;">
+ <img src="navy-darkblue_dark.png" width="200" height="50" align="left"/>
+ <div style="text-align:center">
+  <h2><center>Provide Booking Details</center></h2>
+ </div></div>
+
+<div class="navbar">
+         <a href="home2.html">HOME</a>
+         <a href="about2.html">ABOUT US</a>
+         <a href="gallery.html">GALLERY</a>
+         <div class="dropdown">
+            <button class="dropbtn">OUR SERVICES
+            <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+               <a href="our-services.html">SERVICES</a>
+               <a href="order_form.html">PRICE QUOTE</a>
+               <a href="parallel.html">TESTIMONIAL</a>
+            </div>
+         </div>
+         <a href="contact.html">CONTACT US</a>
+         <div class="dropdown" style="float:right">
+            <button class="dropbtn">
+            <a href="firstpage.html">LOGOUT</a></button>
+         </div>
+      </div>
+	  
+ <div class="container">
+ <br>
+ <div style="float:left; width:46%">
+		<img src="blog-3.jpg" height="100%" width="100%">
+ </div>
+<form action="booking.php" method="POST">
+<table width="528" border="0" align="center">
+  <tbody>
+    <tr>
+      <td width="167" height="39" >Username:</td>
+      <td width="146"><input type="text" name="username" id="username" onBlur="" required></td>
+	  <td width="201"><span id="error_uname"></span></td>
+    </tr>
+    <tr>
+      <td height="39"> E-Mail:</td>
+      <td><input type="text" name="email" id="email" required></td>
+	  <td width="201"><span id="error_mail"></span></td>
+    </tr>
+    <tr>
+      <td height="39">Password:</td>
+      <td><input type="password" name="password" id="password" required></td>
+	  <td width="201"><span id="error_pass"></span></td>
+    </tr>
+    <tr>
+      <td height="39">Phone Number:</td>
+      <td><input type="text" name="phone" id="phonenumber" maxlength="10" required></td>
+	  <td width="201"><span id="error_phone"></span></td>
+    </tr>
+	 <tr>
+      <td height="39">Service Type:</td>
+      <td><select id="service" style="width:100%" name="service_type" required>
+ 		   <option>----------------Select Service----------------</option>
+		          <option>Appartments</option>
+			  <option>Offices</option>
+		          <option>Warehouses</option>
+			  <option>Transportation</option>
+      </select></td>
+	  <td width="201"><span id="error_service"></span></td>
+    </tr>
+    <tr>
+      <td height="42"> Source State:</td>
+      <td><select style="width:100%" onChange="print_city('state1', this.selectedIndex);" id="sts1" name ="source_state" class="form-control" required></select>
+      </td>
+	  <td width="201"><span id="error_state1"></span></td>
+    </tr>
+    <tr>
+      <td height="42"> Source City:</td>
+      <td><select style="width:100%" onChange="print_state('city', this.selctedIndex);"id="state1" name="source_city" class="form-control">
+      </select></td>
+       <td width="201"><span id="error_city1"></span></td>
+    </tr>
+	 <tr>
+      <td height="42"> Destination State:</td>
+      <td><select style="width:100%" onChange="print_city('state2', this.selectedIndex);" id="sts2" name ="destination_state" class="form-control"></select>
+      </td>
+	  <td width="201"><span id="error_state2"></span></td>
+    </tr>
+       <tr>
+      <td height="42"> Destination City:</td>
+      <td><select style="width:100%" onChange="print_state('city', this.selctedIndex);"id="state2" name="destination_city" class="form-control">
+      </select></td>
+       <td width="201"><span id="error_city2"></span></td>
+    </tr>
+	<tr>
+      <td height="10"></td>
+      <td></td>
+    </tr>
+	
+    <tr>
+      <td colspan="2">
+		<div align="center">
+		<input type="submit" name="submit" id="submit" value="Submit" onClick="validateBooking();">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="reset" name="reset" id="reset" value="Reset" onClick="window.location.href = 'booking.html'">
+		</div>
+	  </td>
+	  <td></td>
+    </tr>
+    </tbody>
+	<script language="javascript"></script>
+</table>
+</form>
+</div>
+
+ <footer>
+ Bag Packers Logistics Services &reg; &trade; <br>All Rights Reserved &copy; - India, 2020<br>
+<a href="faq.html">Terms and Conditions</a>
+ </footer>
+ 
+</body>
+
+<script>
+
+print_state("sts1");
+print_state("sts2");
+
+function isEmpty(str){
+	str = str.trim()
+	if(str==undefined || str=="" || str.length==0)
+		return true;
+	else
+		return false;
+}
+
+function isNumber(str){
+	 var pattern = new RegExp("^[0-9]+$")
+	 return pattern.test(str); 
+}
+
+function validateBooking() {
+
+	validationSuccessful = true;
+	
+    var uname = document.getElementById('username');
+    var mail = document.getElementById('email');
+    var pass = document.getElementById('password');
+	var phone = document.getElementById('phonenumber');
+	var service = document.getElementById('service');
+        
+
+    /*Regex Code*/
+    var filter_name = /^[a-zA-Z]+$/;
+    var filter_mail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var filter_zipcode = /^[0-9]{6}$/;
+
+    /*Conditions*/
+	if (filter_name.test(uname.value)) {
+        document.getElementById('error_uname').innerHTML = '';
+    } else {
+		validationSuccessful = false;
+        document.getElementById('error_uname').innerHTML = '<span>Invalid Username</span>';
+    }
+	
+	if (filter_mail.test(mail.value)) {
+        document.getElementById('error_mail').innerHTML = '';
+    } else {
+		validationSuccessful = false;
+        document.getElementById('error_mail').innerHTML = '<span>Invalid E-Mail</span>';
+    }
+	
+	if (!isEmpty(pass.value)) {
+        document.getElementById('error_pass').innerHTML = '';
+		if(pass.value.length>=6){
+			document.getElementById('error_pass').innerHTML = '';
+		}
+		else{
+			validationSuccessful = false;
+			document.getElementById('error_pass').innerHTML = '<span>Should contain minimum 6 chars</span>';
+		}
+    } else {
+		validationSuccessful = false;
+        document.getElementById('error_pass').innerHTML = '<span>Empty Password</span>';
+    }
+	
+    if (!isEmpty(phone.value)) {
+        document.getElementById('error_phone').innerHTML = '';
+		if((isNumber(phone.value)) && (phone.value.length==10)){
+			document.getElementById('error_phone').innerHTML = '';
+		}
+		else{
+			validationSuccessful = false;
+			document.getElementById('error_phone').innerHTML = '<span>Invalid 10-digit Mobile Number</span>';
+		}
+    } else {
+		validationSuccessful = false;
+        document.getElementById('error_phone').innerHTML = '<span>Empty Phone Number</span>';
+    }
+	
+	if (sts1.selectedIndex == 0) {
+		validationSuccessful = false;
+        document.getElementById('error_state1').innerHTML = '<span>Please select Source State</span>';
+    } else {
+        document.getElementById('error_state1').innerHTML = '';
+    }
+	
+	if (state1.selectedIndex == 0) {
+		validationSuccessful = false;
+        document.getElementById('error_city1').innerHTML = '<span>Please select Source City</span>';
+    } else {
+        document.getElementById('error_city1').innerHTML = '';
+    }
+	
+	if (sts2.selectedIndex == 0) {
+		validationSuccessful = false;
+        document.getElementById('error_state2').innerHTML = '<span>Please select Destination State</span>';
+    } else {
+        document.getElementById('error_state2').innerHTML = '';
+    }
+	
+	if (state2.selectedIndex == 0) {
+		validationSuccessful = false;
+        document.getElementById('error_city2').innerHTML = '<span>Please select Destination City</span>';
+    } else {
+        document.getElementById('error_city2').innerHTML = '';
+    }
+	
+   if (service.selectedIndex == 0) {
+		validationSuccessful = false;
+        document.getElementById('error_service').innerHTML = '<span>Please select Service Type</span>';
+    } else {
+        document.getElementById('error_service').innerHTML = '';
+    }
+	
+	if(validationSuccessful){
+		alert('Your booking is confirmed and our team will contact you soon!');
+		window.location.href = 'booking.html';
+	}
+}
+
+</script>
+</html>
